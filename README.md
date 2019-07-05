@@ -44,7 +44,7 @@ The resulting screenshot is given in Figure 2.
 </figure>
 
 
-### Finding the shortest path between two characters:s
+### Finding the shortest path between two characters:
 
 In order to find the shortest path between two characters (i.e. from Arya to Ramsay), I tried the default shortestPath algorithm defined in the Neo4j. But this function does not take into account the weight property and calculate the distance as the steps between source and target nodes.For our case (Arya -> Ramsay), the shortest path results with 2 steps which does not consider the weights.  
 
@@ -114,7 +114,7 @@ WHERE parent1.name=parent2.name
 CREATE (kid1)-[r:RELATIONSHIP{tie:'Sibling'}]->( kid2)
 ```
 
-### Finding the children of an incestuous relationship:
+### Finding the children of an incestuous relationship:
 
 To find the children of an incestuous relationship, I defined such a rule that if a character’s mother and father are siblings, then this character is a child of an incestuous relationship. For this purpose, I used the following query:
 

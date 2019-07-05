@@ -2,9 +2,11 @@
 
 - This repository belongs to an assignment of CENG790 Big Data Analytics Course, METU.
 
-- Detailed assignment description can be found [here.](./assignment-definition.pdf) 
+- Detailed assignment description can be found [here](./assignment-definition.pdf). 
 
-## Dataset: 
+- A more detailed technical report is available [here](./report.pdf).
+
+## Dataset  
 - [stormofswords.csv](./data/stormofswords.csv) includes `Source`, `Target`, `Weight` where Source and Target represent characters from the books, while the weight quantifies the number of interactions between these two characters.
 
 - [family_ties.csv](./data/family_ties.csv) includes information on the family ties between the characters.
@@ -24,7 +26,7 @@ The total number of characters is 107. The related screenshot from Neo4j Desktop
 
 ### Summary  statistics  for each character:
 
-The summary  statistics  for  the  minimum,  maximum  and  average  number  of  characters  each character has interacted with is achieved with the following cypher query.
+The summary  statistics  for  the  minimum,  maximum  and  average  number  of  characters  each character has interacted with is achieved with the following cypher query:
 
 ```
 MATCH (c:Character)-[i:INTERACTS]->() 
@@ -83,4 +85,54 @@ The longest shortest pathes are given in Figure 4.
   <figcaption>Fig.4 - The list of longest shortest pathes between any 2 characters.</figcaption>
 </figure>
 
+### Finding the parents of a given character:
+In order to find the parents of a character (Jon Snow for our case), the following query is used:
+
+```
+MATCH (char2:Character)-[r:RELATIONSHIP]->(char1:Character{name:'Jon'}) 
+RETURN char1,r,char2;
+```
+
+The screenshot in Figure 5 illustrates the parents of Jon Snow.
+
+<figure>
+  <img src="./figures/8.png" alt="parents of Jon Snow" style="width:100%">
+  <figcaption>Fig.5 - The parents of Jon Snow.</figcaption>
+</figure>
+
+### Creating 'Sibling' relationship:
+The dataset ([family_ties.csv](./data/family_ties.csv)) consists of only `father` and `mother` relationships. In order to create `Sibling` ties between the characters, I used the following query:
+
+```
+// Creating the sibling relationships.
+MATCH ((kid1:Character)<-[:RELATIONSHIP]-(parent1:Character)),
+((kid2:Character)<-[:RELATIONSHIP]-(parent2:Character)) 
+WHERE parent1.name=parent2.name
+CREATE (kid1)-[r:RELATIONSHIP{tie:'Sibling'}]->( kid2)
+```
+
+### Finding the children of an incestuous relationship:
+
+To find the children of an incestuous relationship, I defined such a rule that if a character’s mother and father are siblings, then this character is a child of an incestuous relationship. For this purpose, I used the following query:
+
+```
+// children of incestuous relationships!
+MATCH ((kid1_:Character)<-[:RELATIONSHIP{tie:'mother'}]-(parent1_:Character)),
+((kid1_:Character)<-[:RELATIONSHIP{tie:'father'}]-(parent2_:Character)) 
+WHERE (parent1_:Character)<-[:RELATIONSHIP{tie:'Sibling'}]-(parent2_:Character)
+RETURN kid1_,parent1_,parent2_
+```
+
+The children of an incestuous relationship are listed in Figure 6.
+<figure>
+  <img src="./figures/10.png" alt="The children of an incestuous relationship" style="width:100%">
+  <figcaption>Fig.6 - The children of an incestuous relationship.</figcaption>
+</figure>
+
+
+## The final version of the graph
+<figure>
+  <img src="./figures/graph.png" alt="the final graph" style="width:100%">
+  <figcaption>Fig.7 - The final graph.</figcaption>
+</figure>
 

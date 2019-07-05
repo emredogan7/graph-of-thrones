@@ -2,9 +2,11 @@
 
 - This repository belongs to an assignment of CENG790 Big Data Analytics Course, METU.
 
-- Detailed assignment description can be found [here](./assignment-definition.pdf). 
+- Detailed assignment description can be found [here](./doc/assignment-definition.pdf). 
 
-- A more detailed technical report is available [here](./report.pdf).
+- A more detailed technical report is available [here](./doc/report.pdf).
+
+- The complete list of cypher queries is [here](./main.cypher).
 
 ## Dataset  
 - [stormofswords.csv](./data/stormofswords.csv) includes `Source`, `Target`, `Weight` where Source and Target represent characters from the books, while the weight quantifies the number of interactions between these two characters.
@@ -19,7 +21,7 @@
 The total number of characters is 107. The related screenshot from Neo4j Desktop is available in Figure 1. 
 
 <figure>
-  <img src="./figures/1.png" alt="Total Characters" style="width:100%">
+  <img src="./fig/1.png" alt="Total Characters" style="width:100%">
   <figcaption>Fig.1 - Screenshot from Neo4j showing the number of total characters in the graph.</figcaption>
 </figure>
 
@@ -37,7 +39,7 @@ RETURN name, min, max, avg
 The resulting screenshot is given in Figure 2.
 
 <figure>
-  <img src="./figures/2.png" alt="summary statistics" style="width:100%">
+  <img src="./fig/2.png" alt="summary statistics" style="width:100%">
   <figcaption>Fig.2 - Summary statistics for the minimum, maximum and average number of characters each character has interacted with.</figcaption>
 </figure>
 
@@ -57,7 +59,7 @@ YIELD nodeId, costRETURN algo.asNode(nodeId).name AS name, cost
 The result is given in Figure 3. Shortest path beween Arya and Ramsay is 13.
 
 <figure>
-  <img src="./figures/4.png" alt="shortest path" style="width:100%">
+  <img src="./fig/4.png" alt="shortest path" style="width:100%">
   <figcaption>Fig.3 - Shortest path between the characters Arya and Ramsay.</figcaption>
 </figure>
 
@@ -81,7 +83,7 @@ ORDER BY distance DESC
 The longest shortest pathes are given in Figure 4.
 
 <figure>
-  <img src="./figures/6.png" alt="longest shortest path" style="width:100%">
+  <img src="./fig/6.png" alt="longest shortest path" style="width:100%">
   <figcaption>Fig.4 - The list of longest shortest pathes between any 2 characters.</figcaption>
 </figure>
 
@@ -96,7 +98,7 @@ RETURN char1,r,char2;
 The screenshot in Figure 5 illustrates the parents of Jon Snow.
 
 <figure>
-  <img src="./figures/8.png" alt="parents of Jon Snow" style="width:100%">
+  <img src="./fig/8.png" alt="parents of Jon Snow" style="width:100%">
   <figcaption>Fig.5 - The parents of Jon Snow.</figcaption>
 </figure>
 
@@ -125,14 +127,14 @@ RETURN kid1_,parent1_,parent2_
 
 The children of an incestuous relationship are listed in Figure 6.
 <figure>
-  <img src="./figures/10.png" alt="The children of an incestuous relationship" style="width:100%">
+  <img src="./fig/10.png" alt="The children of an incestuous relationship" style="width:100%">
   <figcaption>Fig.6 - The children of an incestuous relationship.</figcaption>
 </figure>
 
 
 ## The final version of the graph
 <figure>
-  <img src="./figures/graph.png" alt="the final graph" style="width:100%">
+  <img src="./fig/graph.png" alt="the final graph" style="width:100%">
   <figcaption>Fig.7 - The final graph.</figcaption>
 </figure>
 

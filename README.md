@@ -26,7 +26,7 @@ The total number of characters is 107. The related screenshot from Neo4j Desktop
 </figure>
 
 
-### Summary  statistics  for each character:
+### Summary statistics for each character:
 
 The summary  statistics  for  the  minimum,  maximum  and  average  number  of  characters  each character has interacted with is achieved with the following cypher query:
 
@@ -41,10 +41,10 @@ The resulting screenshot is given in Figure 2.
 <figure>
   <img src="./fig/2.png" alt="summary statistics" style="width:100%">
   <figcaption>Fig.2 - Summary statistics for the minimum, maximum and average number of characters each character has interacted.</figcaption>
-</figure>  
+</figure>
 
 
-### Finding the shortest path between two characters:
+### Finding the shortest path between two characters:s
 
 In order to find the shortest path between two characters (i.e. from Arya to Ramsay), I tried the default shortestPath algorithm defined in the Neo4j. But this function does not take into account the weight property and calculate the distance as the steps between source and target nodes.For our case (Arya -> Ramsay), the shortest path results with 2 steps which does not consider the weights.  
 

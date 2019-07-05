@@ -40,11 +40,12 @@ The resulting screenshot is given in Figure 2.
 
 <figure>
   <img src="./fig/2.png" alt="summary statistics" style="width:100%">
-  <figcaption>Fig.2 - Summary statistics for the minimum, maximum and average number of characters each character has interacted with.</figcaption>
-</figure>
+  <figcaption>Fig.2 - Summary statistics for the minimum, maximum and average number of characters each character has interacted.</figcaption>
+</figure>  
 
 
 ### Finding the shortest path between two characters:
+
 In order to find the shortest path between two characters (i.e. from Arya to Ramsay), I tried the default shortestPath algorithm defined in the Neo4j. But this function does not take into account the weight property and calculate the distance as the steps between source and target nodes.For our case (Arya -> Ramsay), the shortest path results with 2 steps which does not consider the weights.  
 
 For this reason, I installed the plugin of [Graph  Algorithms](https://github.com/neo4j-contrib/neo4j-graph-algorithms) implemented for Neo4j and used the shortest path algorithm within this library. The related query is given below:  
@@ -134,7 +135,7 @@ The children of an incestuous relationship are listed in Figure 6.
 
 ## The final version of the graph
 <figure>
-  <img src="./fig/graph.png" alt="the final graph" style="width:100%">
-  <figcaption>Fig.7 - The final graph.</figcaption>
+  <img src="./fig/graph.png" alt="the final version of graph" style="width:100%">
+  <figcaption>Fig.7 - The final graph consisting of both INTERACTS and RELATIONSHIP interactions. RELATIONSHIP interactions (dataset + sibling relationships)are labeled in green where INTERACTS are pink.</figcaption>
 </figure>
 
